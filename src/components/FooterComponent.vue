@@ -1,9 +1,8 @@
 <template>
   <footer class="mastfoot mt-5 text-center text-light">
     <div class="inner">
-      <p>Made with <span class="text-danger" >&hearts;</span> by <a href="#/home">CookUni</a>.</p>
+      <p>Made with <span class="text-danger">&hearts;</span> by <a href="#/home">CookUni</a>.</p>
     </div>
-    <i class="fa fa-heart"></i>
   </footer>
 </template>
 
@@ -17,14 +16,17 @@ export default {};
 .mastfoot {
   position: absolute;
   bottom: 0;
-  margin-left: 50%;
+  left: 44%;
+  padding:10px;
+  color: rgba(255, 255, 255, 0.5);
   /* width:100%; */
   /* height: 30px; Height of the footer */
   /* background: rgb(20, 20, 20); */
-  color: rgba(255, 255, 255, 0.5);
 
 }
-
+a{
+  color:green;
+}
 p {
   margin: 0;
 }

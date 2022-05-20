@@ -12,7 +12,10 @@
   "main": ".eslintrc.js",
   "dependencies": {
     "@mdi/font": "5.9.55",
+    "bootstrap": "^5.2.0-beta1",
+    "bootstrap-icons": "^1.8.2",
     "core-js": "^3.8.3",
+    "firebase": "^9.8.1",
     "roboto-fontface": "*",
     "vue": "^3.2.13",
     "vue-router": "^4.0.3",
