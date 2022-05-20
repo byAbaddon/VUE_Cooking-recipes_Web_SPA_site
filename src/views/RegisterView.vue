@@ -59,16 +59,20 @@ export default {};
 form {
   width: 30%;
   margin: 10em auto;
+}
+ /* .user-names {
+  
+ width: 22em;
+  display: flex;
+  flex-wrap: wrap-reverse; 
+}
 
+#defaultRegisterFormFirstName {
+  margin-right: 0em;
 }
-.user-names{
-    display: flex;
-    width: 24em;
-    justify-content: space-between;
-}
+*/
 
 #defaultRegisterFormLastName {
-    margin-left: 2.3em;
-}
-
+  margin-top: 1.3em;
+} 
 </style>
