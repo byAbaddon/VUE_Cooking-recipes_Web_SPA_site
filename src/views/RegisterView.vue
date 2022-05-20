@@ -1,38 +1,74 @@
 <template>
   <form class="text-center p-5 form-layout" action="#/register" method="POST">
-
     <p class="h4 mb-4">Sign up</p>
 
-    <div class="form-row mb-4">
-        <div class="col">
-
-            <input type="text" id="defaultRegisterFormFirstName" class="form-control" name="firstName"
-                placeholder="First name">
-        </div>
-        <div class="col">
-
-            <input type="text" id="defaultRegisterFormLastName" class="form-control" name="lastName"
-                placeholder="Last name">
-        </div>
+    <div class="form-row mb-4 user-names">
+      <div class="col">
+        <input
+          type="text"
+          id="defaultRegisterFormFirstName"
+          class="form-control"
+          name="firstName"
+          placeholder="First name"
+        />
+      </div>
+      <div class="col">
+        <input
+          type="text"
+          id="defaultRegisterFormLastName"
+          class="form-control"
+          name="lastName"
+          placeholder="Last name"
+        />
+      </div>
     </div>
 
-    <input type="text" id="defaultRegisterFormUsername" class="form-control mb-4" name="username"
-        placeholder="Username">
-    <input type="password" id="defaultRegisterFormPassword" class="form-control" name="password" placeholder="Password">
-    <hr>
-    <input type="password" id="defaultRegisterRepeatPassword" class="form-control" name="repeatPassword"
-        placeholder="Repeat Password">
-    <button class="btn btn-danger my-4 btn-block w-25 m-auto" type="submit">Sign up</button>
-
-</form>
+    <input
+      type="text"
+      id="defaultRegisterFormUsername"
+      class="form-control mb-4"
+      name="username"
+      placeholder="Username"
+    />
+    <input
+      type="password"
+      id="defaultRegisterFormPassword"
+      class="form-control"
+      name="password"
+      placeholder="Password"
+    />
+    <hr />
+    <input
+      type="password"
+      id="defaultRegisterRepeatPassword"
+      class="form-control"
+      name="repeatPassword"
+      placeholder="Repeat Password"
+    />
+    <button class="btn btn-danger my-4 btn-block w-25 m-auto" type="submit">
+      Sign up
+    </button>
+  </form>
 </template>
 
 <script>
-export default {
-
-}
+export default {};
 </script>
 
-<style>
+<style scoped>
+form {
+  width: 30%;
+  margin: 10em auto;
+
+}
+.user-names{
+    display: flex;
+    width: 24em;
+    justify-content: space-between;
+}
+
+#defaultRegisterFormLastName {
+    margin-left: 2.3em;
+}
 
 </style>
