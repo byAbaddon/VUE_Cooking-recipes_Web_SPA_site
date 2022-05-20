@@ -16,7 +16,6 @@
     "roboto-fontface": "*",
     "vue": "^3.2.13",
     "vue-router": "^4.0.3",
-    "vuetify": "^3.0.0-beta.0",
     "webfontloader": "^1.0.0"
   },
   "devDependencies": {
@@ -30,9 +29,7 @@
     "eslint-plugin-vue": "^8.0.3",
     "node-sass": "^7.0.1",
     "sass": "^1.38.0",
-    "sass-loader": "^13.0.0",
-    "vue-cli-plugin-vuetify": "~2.4.8",
-    "vuetify-loader": "^2.0.0-alpha.0"
+    "sass-loader": "^13.0.0"
   },
   "license": "MIT"
 }

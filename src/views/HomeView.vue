@@ -1,14 +1,19 @@
 <template>
-<h2>home</h2>
+  <main role="main" class="inner cover mt-5">
+    <h1 class="cover-heading">Coooooking University</h1>
+    <p class="lead">
+      They say that food passes through the stomach, we say that food passes
+      through CookUni.
+    </p>
+  </main>
 </template>
 
 
 <script>
-export default {
-
-}
+export default {};
 </script>
 
 <style>
+
 
 </style>

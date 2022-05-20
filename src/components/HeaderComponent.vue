@@ -1,7 +1,7 @@
 <template>
 <header class="masthead mb-auto">
     <div class="inner">
-        <h3 class="masthead-brand">CookUni</h3>
+        <h3 class="masthead-brand ">CookUni</h3>
         <nav class="nav nav-masthead justify-content-center">
           
             <a class="nav-link" href="#">Home</a>
