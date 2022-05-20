@@ -26,12 +26,9 @@ export default {
   setup() {
     const names = ref("User");
     const router = useRouter()
-
-    function onPath(e) {
-        router.path(e.target.text)
-      
-    } 
-
+    const onPath = e => router.push( e.target.text)
+       
+    
     return { names, onPath};
   },
 };
