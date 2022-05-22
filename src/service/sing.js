@@ -5,7 +5,7 @@ const singUser = (email, password) => signInWithEmailAndPassword(getAuth(), emai
     const { uid, email }  = userCredential.user
     console.log(`Success login!\nYou id: ${uid}\nYou email: ${email}`)
     localStorage.setItem('auth', JSON.stringify(userCredential.user)) //save user data )
-    this.$router.push('/movies') //redirect to page   
+    // this.$router.push('/') //redirect to page   
   })
   .catch((error) => {
     // const errorCode = error.code;

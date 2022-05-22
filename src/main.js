@@ -4,7 +4,7 @@ import router from './router'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap/dist/js/bootstrap.min.js'
 import 'bootstrap-icons/font/bootstrap-icons.css';
-import firebaseSDK from '@/service/sdk'
+import { firebaseSDK } from '@/service/sdk'
 import { getAuth } from "firebase/auth";
 
 let app

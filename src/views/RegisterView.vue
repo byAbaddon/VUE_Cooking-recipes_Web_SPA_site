@@ -10,6 +10,8 @@
           class="form-control"
           name="firstName"
           placeholder="First name"
+          minlength="2"
+          required
         />
       </div>
       <div class="col">
@@ -19,16 +21,19 @@
           class="form-control"
           name="lastName"
           placeholder="Last name"
+          minlength="2"
+          required
         />
       </div>
     </div>
 
     <input
-      type="text"
+      type="email"
       id="defaultRegisterFormUsername"
       class="form-control mb-4"
-      name="username"
-      placeholder="Username"
+      name="email"
+      placeholder="email"
+      required
     />
     <input
       type="password"
@@ -36,6 +41,8 @@
       class="form-control"
       name="password"
       placeholder="Password"
+      minlength="6"
+      required
     />
     <hr />
     <input
@@ -44,6 +51,8 @@
       class="form-control"
       name="repeatPassword"
       placeholder="Repeat Password"
+      minlength="6"
+      required
     />
     <button class="btn btn-danger my-4 btn-block w-25 m-auto" type="submit">
       Sign up
@@ -52,15 +61,25 @@
 </template>
 
 <script>
-export default {};
+import { registrationNewUser } from '@/service/register'
+export default {
+  setup(){
+
+registrationNewUser()
+  }
+
+};
 </script>
+
+
+
 
 <style scoped>
 form {
   width: 30%;
   margin: 10em auto;
 }
- /* .user-names {
+/* .user-names {
   
  width: 22em;
   display: flex;
@@ -74,5 +93,5 @@ form {
 
 #defaultRegisterFormLastName {
   margin-top: 1.3em;
-} 
+}
 </style>

@@ -1,4 +1,4 @@
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 
 // Create new Sing  with (email and pass)  
 const registrationNewUser = (email, password) => createUserWithEmailAndPassword(getAuth(), email, password)
@@ -17,6 +17,25 @@ const registrationNewUser = (email, password) => createUserWithEmailAndPassword(
       const errorMessage = error.message;
       console.log('Error register: ', errorCode, ' - ', errorMessage)
     })
+
+
+//TODO:
+
+//updateProfileData
+const auth = getAuth();
+updateProfile(auth.currentUser, {
+  displayName: "Jane Q. User", photoURL: "https://example.com/jane-q-user/profile.jpg"
+}).then(() => {
+  // Profile updated!
+  // ...
+}).catch((e) => {
+  console.log(e.error);
+  // An error occurred
+  // ...
+});
+
+
+
 
 
 export { registrationNewUser }
