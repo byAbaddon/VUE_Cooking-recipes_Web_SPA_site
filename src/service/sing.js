@@ -1,11 +1,15 @@
+import router from "@/router"
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 
+
 const singUser = (email, password) => signInWithEmailAndPassword(getAuth(), email, password)
+  
   .then((userCredential) => {
-    const { uid, email }  = userCredential.user
-    console.log(`Success login!\nYou id: ${uid}\nYou email: ${email}`)
-    localStorage.setItem('auth', JSON.stringify(userCredential.user)) //save user data )
-    // this.$router.push('/') //redirect to page   
+    const { uid, email, displayName } = userCredential.user
+
+    console.log(`Success login!\nYou name: ${displayName}\nYou id: ${uid}\nYou email: ${email}`)
+    localStorage.setItem('auth', JSON.stringify({ uid, displayName, email })) //save user data )
+    router.push('/') //redirect to page   
   })
   .catch((error) => {
     // const errorCode = error.code;

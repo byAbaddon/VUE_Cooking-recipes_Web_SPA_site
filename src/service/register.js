@@ -1,7 +1,8 @@
 import { getAuth, createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
+import router from "@/router"
 
 // Create new Sing  with (email and pass)  
-const registrationNewUser = (email, password) => createUserWithEmailAndPassword(getAuth(), email, password)
+const registrationNewUser = ({ firstName, email, password }) => createUserWithEmailAndPassword(getAuth(), email, password)
     .then((userCredential) => {
       // Signed in 
 
@@ -9,8 +10,9 @@ const registrationNewUser = (email, password) => createUserWithEmailAndPassword(
       // console.log('You full data', getAuth().currentUser)
       console.log('You register was successful', uid, email)
       localStorage.setItem('auth', JSON.stringify(userCredential.user)) //save user data )
-      this.$router.push('/movies') //redirect to page   
 
+      updateUserData(firstName)
+      router.push('/login') //redirect to page   
     })
     .catch((error) => {
       const errorCode = error.code;
@@ -19,23 +21,21 @@ const registrationNewUser = (email, password) => createUserWithEmailAndPassword(
     })
 
 
-//TODO:
-
 //updateProfileData
-const auth = getAuth();
-updateProfile(auth.currentUser, {
-  displayName: "Jane Q. User", photoURL: "https://example.com/jane-q-user/profile.jpg"
-}).then(() => {
-  // Profile updated!
-  // ...
-}).catch((e) => {
-  console.log(e.error);
-  // An error occurred
-  // ...
-});
+function updateUserData(firstName) {
+  const auth = getAuth()
+  updateProfile(auth.currentUser, {
+    displayName: firstName, photoURL: "https://example.com/jane-q-user/profile.jpg"
+  }).then(() => {
+    console.log(firstName, 'Profile updated!');
+  }).catch((e) => {
+    console.log('Fail updated profile: ',  e.error)
+    // An error occurred
+    // ...
+  })
+
+}
 
 
 
-
-
-export { registrationNewUser }
+export { registrationNewUser}

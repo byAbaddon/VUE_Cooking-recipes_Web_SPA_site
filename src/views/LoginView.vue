@@ -8,7 +8,7 @@
       name="email"
       class="form-control mb-4"
       placeholder="email"
-      value="koko@avb.bg"
+      value="koko@abv.bg"
       required
     />
 
@@ -34,20 +34,21 @@
 <script>
 import {singUser} from '@/service/sing'
 
+
 export default {
   setup() {
-
-
     const onSubmit = (e) => {
       const [email, password] = e.currentTarget.querySelectorAll("input");
       if (  /.+@.+\..+/.test(email.value) && password.value.length > 5) {
          singUser(email.value, password.value)
       }
-     
     };
 
-    return { onSubmit};
-  },
+
+   return { onSubmit}
+}
+
+  
 };
 </script>
 

@@ -5,13 +5,16 @@
         <span> <i class="bi bi-apple"></i> </span> MasterChef
       </h3>
 
-      <nav class="nav nav-masthead justify-content-center"  @click.prevent="onPath"    >
-        <a class="nav-link" href="">Home</a>
-        <a class="nav-link" href="">Welcome, {{ names }}!</a>
-        <a class="nav-link" href="/create">Share recipe</a>
-        <a class="nav-link" href="/logout">Logout</a>
-        <a class="nav-link" href="/login">Login</a>
-        <a class="nav-link" href="/register">Register</a>
+      <nav
+        class="nav nav-masthead justify-content-center"
+        @click.prevent="onPath"
+      >
+        <a class="nav-link">Home</a>
+        <a class="nav-link">Welcome, {{ names }}!</a>
+        <a class="nav-link">ShareRecipe</a>
+        <a class="nav-link">Logout</a>
+        <a class="nav-link">Login</a>
+        <a class="nav-link">Register</a>
       </nav>
     </div>
   </header>
@@ -19,14 +22,32 @@
 
 <script>
 import { ref } from "vue";
-import { useRouter} from 'vue-router'  
+import router from "@/router"
 
 export default {
  
   setup() {
     const names = ref("User");
-    const router = useRouter()
-    const onPath = e => router.push( e.target.text)
+   
+   
+    const onPath = e => {
+      let currentPath = e.target.text.toLowerCase()
+      
+      if (currentPath == 'logout') {
+         console.log("Logout success. Storage was clear!")
+         localStorage.clear()
+         router.push('/')
+         return
+      }
+
+      currentPath == 'sharerecipe' ? currentPath = 'share' : currentPath == 'home' ? currentPath = '/' : null
+      if (currentPath.split(',')[0] != 'welcome') {
+          router.push(currentPath)
+      }
+    
+       
+        
+     }
        
     
     return { names, onPath};
@@ -41,14 +62,14 @@ export default {
 h3 {
   color: green;
   font-size: 1.5em;
-  margin-left:1em ;
+  margin-left: 1em;
   padding: 0.5em;
   font-weight: bold;
   /* text-decoration-line: underline; */
 }
 
 .nav-masthead .nav-link[data-v-5c833af0] {
-    padding: 1em;
+  padding: 1em;
 }
 
 .masthead {

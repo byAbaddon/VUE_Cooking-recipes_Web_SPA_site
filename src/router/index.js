@@ -17,6 +17,11 @@ const routes = [
     component: () => import('@/views/RegisterView')
   },
   {
+    path: '/share',
+    name: 'share',
+    component: () => import('@/views/ShareView')
+  },
+  {
     path: '/about',
     name: 'about',
     component: () => import('@/views/AboutView')
