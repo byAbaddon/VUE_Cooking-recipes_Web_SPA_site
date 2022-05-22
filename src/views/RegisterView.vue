@@ -80,8 +80,6 @@ import { registrationNewUser } from '@/service/register'
 
 export default {
   setup() {
-    
-    
     const formData = reactive({
       firstName: 'Bay',
       lastName: 'Hui',

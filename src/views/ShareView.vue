@@ -35,6 +35,18 @@ export default {
 }
 </script>
 
-<style>
+<style scoped >
+
+form {
+  width: 40%;
+  height: 44em;
+  margin: 0 auto;
+  margin-top: 5em;
+}
+
+textarea{
+    height: 8em;
+}
+
 
 </style>
