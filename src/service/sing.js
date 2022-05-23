@@ -9,7 +9,8 @@ const singUser = (email, password) => signInWithEmailAndPassword(getAuth(), emai
 
     console.log(`Success login!\nYou name: ${displayName}\nYou id: ${uid}\nYou email: ${email}`)
     localStorage.setItem('auth', JSON.stringify({ uid, displayName, email })) //save user data )
-    router.push('/') //redirect to page   
+    router.push('/') //redirect to page
+    return 'ok'
   })
   .catch((error) => {
     // const errorCode = error.code;

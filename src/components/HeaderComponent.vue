@@ -9,48 +9,61 @@
         class="nav nav-masthead justify-content-center"
         @click.prevent="onPath"
       >
-        <a class="nav-link">Home</a>
-        <a class="nav-link">Welcome, {{ names }}!</a>
-        <a class="nav-link">ShareRecipe</a>
-        <a class="nav-link">Logout</a>
-        <a class="nav-link">Login</a>
-        <a class="nav-link">Register</a>
+        <div v-if="!isAuth">
+          <a class="nav-link">Home</a>
+          <a class="nav-link">Login</a>
+          <a class="nav-link">Register</a>
+        </div>
+
+        <div v-else>
+          <a class="nav-link">Home</a>
+          <a class="nav-link">Welcome, {{ userName }}!</a>
+          <a class="nav-link">ShareRecipe</a>
+          <a class="nav-link">Logout</a>
+        </div>
       </nav>
     </div>
+    <p style="color: red; font-size: x-large">{{ isAuth }}</p>
   </header>
 </template>
 
 <script>
 import { ref } from "vue";
-import router from "@/router"
+import router from "@/router";
+import emitter from "tiny-emitter/instance";
 
 export default {
- 
   setup() {
-    const names = ref("User");
-   
-   
-    const onPath = e => {
-      let currentPath = e.target.text.toLowerCase()
-      
-      if (currentPath == 'logout') {
-         console.log("Logout success. Storage was clear!")
-         localStorage.clear()
-         router.push('/')
-         return
+    let isAuth = ref(false);
+    const userName = ref("");
+
+    emitter.on("login", () => {
+      isAuth.value = true;
+      userName.value =  JSON.parse(localStorage.getItem("auth")).displayName
+      console.log("Custom event! Login success");
+    });
+
+    const onPath = (e) => {
+      let currentPath = e.target.text.toLowerCase();
+
+      if (currentPath == "logout") {
+        console.log("Logout success. Storage was clear!");
+        localStorage.clear();
+        router.go()
+        return;
       }
 
-      currentPath == 'sharerecipe' ? currentPath = 'share' : currentPath == 'home' ? currentPath = '/' : null
-      if (currentPath.split(',')[0] != 'welcome') {
-          router.push(currentPath)
+      currentPath == "sharerecipe"
+        ? (currentPath = "share")
+        : currentPath == "home"
+        ? (currentPath = "/")
+        : null;
+      if (currentPath.split(",")[0] != "welcome") {
+        router.push(currentPath);
       }
-    
-       
-        
-     }
-       
-    
-    return { names, onPath};
+    };
+
+    return { userName, isAuth, onPath };
   },
 };
 </script>
@@ -101,6 +114,10 @@ h3 {
 .nav-masthead a:hover {
   color: #fff;
   border-bottom-color: white;
+}
+
+nav div {
+  display: flex;
 }
 
 @media (min-width: 48em) {

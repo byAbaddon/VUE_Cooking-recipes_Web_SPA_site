@@ -33,19 +33,27 @@
 
 <script>
 import {singUser} from '@/service/sing'
-
+import emitter  from 'tiny-emitter/instance'
 
 export default {
-  setup() {
+  emits: ['login'],
+  
+  setup(_, context) { 
     const onSubmit = (e) => {
+  
+      context.emit('login')
       const [email, password] = e.currentTarget.querySelectorAll("input");
       if (  /.+@.+\..+/.test(email.value) && password.value.length > 5) {
          singUser(email.value, password.value)
+         .then(() => emitter.emit('login'))   
       }
-    };
+      
+    }
+    
 
+   
 
-   return { onSubmit}
+   return { onSubmit,}
 }
 
   
