@@ -26,11 +26,20 @@ const routes = [
     name: 'about',
     component: () => import('@/views/AboutView')
   },
+  {
+    path: '/:pathMatch(.*)*',
+    name: 'not-found',
+    component: () => import('@/views/NotFoundView')
+  },
 ]
+
+
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes
 })
+
+
 
 export default router

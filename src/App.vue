@@ -12,7 +12,8 @@
 import HeaderComponent from "./components/HeaderComponent.vue";
 import FooterComponent from "./components/FooterComponent.vue";
 import router from "./router"
-import { onMounted, onBeforeMount } from "vue";
+import {onMounted, onBeforeMount, } from "vue";
+
 
 export default {
   name: "App",
@@ -26,6 +27,7 @@ export default {
     }
   })
 
+
   onBeforeMount( () => {
     window.addEventListener("beforeunload", (event) => {
       if (localStorage.getItem("auth") != null) {
@@ -38,8 +40,8 @@ export default {
   
   })
 
-    return {}
-  }
+     return {}
+   }
 
 };
 </script>

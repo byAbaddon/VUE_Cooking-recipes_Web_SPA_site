@@ -65,7 +65,7 @@ export default {
       }
     };
 
-    return { userName, isAuth, onPath };
+    return { userName, isAuth, onPath ,};
   },
 };
 </script>
