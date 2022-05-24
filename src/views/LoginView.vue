@@ -1,7 +1,6 @@
 <template>
   <form class="text-center p-5 form-layout" @submit.prevent="onSubmit">
     <p class="h4 mb-4">Sign in</p>
-    <p> {{emailRules}}</p>
     <input
       type="email"
       id="defaultRegisterFormUsername"

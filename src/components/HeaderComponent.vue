@@ -17,13 +17,12 @@
 
         <div v-else>
           <a class="nav-link">Home</a>
-          <a class="nav-link">Welcome, {{ userName }}!</a>
+          <a class="nav-link">Welcome, <span>{{ userName }}</span>!</a>
           <a class="nav-link">ShareRecipe</a>
           <a class="nav-link">Logout</a>
         </div>
       </nav>
     </div>
-    <p style="color: red; font-size: x-large">{{ isAuth }}</p>
   </header>
 </template>
 
@@ -46,10 +45,13 @@ export default {
     const onPath = (e) => {
       let currentPath = e.target.text.toLowerCase();
 
-      if (currentPath == "logout") {
-        console.log("Logout success. Storage was clear!");
-        localStorage.clear();
-        router.go()
+      if (currentPath == "logout") {                      //logOut
+        let logoutMessage =  window.confirm('Are you sure to want to leave?')
+        if (logoutMessage) {
+          console.log("Logout success. Storage was clear!");
+          localStorage.clear()
+          router.go()
+        }  
         return;
       }
 
@@ -79,6 +81,10 @@ h3 {
   padding: 0.5em;
   font-weight: bold;
   /* text-decoration-line: underline; */
+}
+
+a > span{
+  color:goldenrod;
 }
 
 .nav-masthead .nav-link[data-v-5c833af0] {
