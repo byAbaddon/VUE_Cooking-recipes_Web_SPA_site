@@ -7,6 +7,7 @@ import 'bootstrap-icons/font/bootstrap-icons.css';
 import { firebaseSDK } from '@/service/sdk'
 import { getAuth } from "firebase/auth";
 
+
 let app
 getAuth().onAuthStateChanged(async user => {
   if (!app) {   

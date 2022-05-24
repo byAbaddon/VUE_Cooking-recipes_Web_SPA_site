@@ -11,47 +11,23 @@
 <script>
 import HeaderComponent from "./components/HeaderComponent.vue";
 import FooterComponent from "./components/FooterComponent.vue";
-import router from "./router"
-import {onMounted, onBeforeMount, } from "vue";
 
 
+// onBeforeMount, 
 export default {
   name: "App",
   components: { HeaderComponent, FooterComponent },
-   
-  setup() {
-  
- onMounted( () =>  {  
-    if (localStorage.getItem('auth') == null ) {
-        router.push("/").catch(()=>{}) 
-    }
-  })
 
-
-  onBeforeMount( () => {
-    window.addEventListener("beforeunload", (event) => {
-      if (localStorage.getItem("auth") != null) {
-        event.returnValue;
-        event.preventDefault() 
-        return
-      }
-      return
-    })
-  
-  })
-
-     return {}
-   }
-
-};
+  setup() {}
+}
 </script>
 
 
-
-<style >
 /*
- * Globals
+Global Style
  */
+<style >   
+
 html {
   /* font-family: sans-serif; */
   /*  Disable drag Introduced in IE 10.*/

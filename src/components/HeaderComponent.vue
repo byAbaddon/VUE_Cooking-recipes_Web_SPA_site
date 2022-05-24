@@ -17,41 +17,41 @@
 
         <div v-else>
           <a class="nav-link">Home</a>
-          <a class="nav-link">Welcome, <span>{{ userName }}</span>!</a>
+          <a class="nav-link"
+            >Welcome, <span>{{ userName }}</span
+            >!</a
+          >
           <a class="nav-link">ShareRecipe</a>
           <a class="nav-link">Logout</a>
         </div>
       </nav>
+      <p style="color: greenyellow">{{ isAuthTwo }}</p>
     </div>
   </header>
 </template>
 
+
 <script>
-import { ref } from "vue";
 import router from "@/router";
 import emitter from "tiny-emitter/instance";
+import { ref, onBeforeMount, onMounted } from "vue";
 
 export default {
   setup() {
     let isAuth = ref(false);
     const userName = ref("");
 
-    emitter.on("login", () => {
-      isAuth.value = true;
-      userName.value =  JSON.parse(localStorage.getItem("auth")).displayName
-      console.log("Custom event! Login success");
-    });
-
     const onPath = (e) => {
       let currentPath = e.target.text.toLowerCase();
 
-      if (currentPath == "logout") {                      //logOut
-        let logoutMessage =  window.confirm('Are you sure to want to leave?')
-        if (logoutMessage) {
+      if (currentPath == "logout") {
+        //logOut
           console.log("Logout success. Storage was clear!");
-          localStorage.clear()
-          router.go()
-        }  
+          localStorage.clear();
+          router.push('/')
+          isAuth.value = false
+          //go();
+        
         return;
       }
 
@@ -65,7 +65,30 @@ export default {
       }
     };
 
-    return { userName, isAuth, onPath ,};
+    emitter.on("login", () => {
+      isAuth.value = true;
+      userName.value = JSON.parse(localStorage.getItem("auth")).displayName;
+      console.log("Custom event! Login success");
+    });
+
+    onBeforeMount(() => {
+      if (localStorage.getItem("auth") == null) {      //user not login
+        router.push("/").catch(() => {});
+      }
+    });
+
+    onMounted(() => {
+      onbeforeunload = (event) => {
+       if (isAuth.value ) {  //user login
+          event.preventDefault() 
+       }
+       
+        
+        // isAuthTwo.value = true
+      };
+    });
+
+    return { userName, isAuth, onPath };
   },
 };
 </script>
@@ -83,8 +106,8 @@ h3 {
   /* text-decoration-line: underline; */
 }
 
-a > span{
-  color:goldenrod;
+a > span {
+  color: goldenrod;
 }
 
 .nav-masthead .nav-link[data-v-5c833af0] {

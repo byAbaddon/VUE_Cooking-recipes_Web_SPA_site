@@ -1,29 +1,55 @@
 <template>
   <div class="not-found">
     <div class="image">
-      <img src="@/assets/angryChef.png" width="1000" alt="chef-pic" />
+      <img src="@/assets/angryChef.png" width="940" alt="chef-pic" />
     </div>
-    <h1 >The Page Not Found !</h1>
-
+    <h1 >Page Not Found 404!</h1>
+     <p>Press button to home</p>
     <div class="navigate">
-      <router-link to="/">
-        <input type="button" value="Home page"  class="font-effect-fire-animation" />
-      </router-link>
+      
+       <input @click="onGoToHomePage" type="button" value="Home page"  class="font-effect-fire-animation" /> 
     </div>
   </div>
 </template>
 
 <script>
-export default {};
+
+import router from '@/router'
+import { onBeforeMount } from 'vue';
+
+export default {
+
+
+setup(){
+
+ 
+ onBeforeMount( () => {
+    document.querySelector('nav').style.display = 'none'
+ })
+
+ const onGoToHomePage = () => {
+   document.querySelector('nav').style.display = 'flex'
+   router.push('/')
+ }
+
+   return {onGoToHomePage}
+ }
+
+
+};
 </script>
 
 
 <style scoped>
+
+p{
+  color:rgb(255, 255, 255);
+  text-align: center;
+}
 .image {
   display: flex;
   justify-content: center;
-  margin-top: 2em;
-  margin-left: 24em;
+  margin-right: 8em;
 }
 
 h1 {
