@@ -78,7 +78,7 @@ body {
   margin: 0;
   padding: 0;
   height: 100%;
-  background:  url("@/assets/background.jpg");
+  background:  url("@/assets/images/background.jpg");
  background-attachment: fixed;
   
 }

@@ -1,7 +1,7 @@
 <template>
   <div class="not-found">
     <div class="image">
-      <img src="@/assets/angryChef.png" width="860" alt="chef-pic" />
+      <img src="@/assets/images/angryChef.png" width="860" alt="chef-pic" />
     </div>
     <h1 >Page Not Found 404!</h1>
      <p>Press button to home</p>

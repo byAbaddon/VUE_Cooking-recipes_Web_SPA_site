@@ -38,14 +38,15 @@ export default {
 <style scoped >
 
 form {
-  width: 40%;
-  height: 44em;
+  width: 38%;
+  height: 40em;
   margin: 0 auto;
-  margin-top: 5em;
-}
+  margin-top: 2em;
+  
+  }
 
 textarea{
-    height: 8em;
+    height: 6em;
 }
 
 

@@ -16,13 +16,10 @@
         </div>
 
         <div v-else>
+          <a class="nav-link" id="ignore-hover">Welcome, Chef <span>{{ userName }}</span  >!</a  >
           <a class="nav-link">Home</a>
-          <a class="nav-link"
-            >Welcome, <span>{{ userName }}</span
-            >!</a
-          >
           <a class="nav-link">ShareRecipe</a>
-          <a class="nav-link">Logout</a>
+          <a class="nav-link" id="logout">Logout</a>
         </div>
       </nav>
     </div>
@@ -163,6 +160,15 @@ nav div {
   .nav-masthead {
     float: right;
   }
+
+ #logout:hover{
+   color:red;
+ }
+
+ #ignore-hover:hover {
+    pointer-events: none;
+ }
+
 }
 </style>
 
