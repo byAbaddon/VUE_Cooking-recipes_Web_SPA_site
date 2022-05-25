@@ -1,7 +1,7 @@
 <template>
   <div class="not-found">
     <div class="image">
-      <img src="@/assets/angryChef.png" width="940" alt="chef-pic" />
+      <img src="@/assets/angryChef.png" width="860" alt="chef-pic" />
     </div>
     <h1 >Page Not Found 404!</h1>
      <p>Press button to home</p>
@@ -16,18 +16,22 @@
 
 import router from '@/router'
 import { onBeforeMount } from 'vue';
+import emitter from "tiny-emitter/instance";
 
 export default {
 
 
 setup(){
 
- 
  onBeforeMount( () => {
     document.querySelector('nav').style.display = 'none'
  })
 
  const onGoToHomePage = () => {
+    if(localStorage.getItem('auth')){
+      emitter.emit('login')
+    }
+      
    document.querySelector('nav').style.display = 'flex'
    router.push('/')
  }
@@ -41,15 +45,21 @@ setup(){
 
 
 <style scoped>
+.not-found{
+  display: flex;
+  flex-direction: column;
+}
+
 
 p{
   color:rgb(255, 255, 255);
   text-align: center;
 }
 .image {
-  display: flex;
-  justify-content: center;
-  margin-right: 8em;
+  margin: 0 auto;
+  position: relative;
+  left: 2em;
+
 }
 
 h1 {

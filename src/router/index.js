@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 
+
 const routes = [
   {
     path: '/',
@@ -19,21 +20,16 @@ const routes = [
   {
     path: '/share',
     name: 'share',
-    component: () => import('@/views/ShareView')
+    component: () => import('@/views/ShareView'),
   },
-  {
-    path: '/about',
-    name: 'about',
-    component: () => import('@/views/AboutView')
-  },
+
   {
     path: '/:pathMatch(.*)*',
     name: 'not-found',
+    // redirect: '/',
     component: () => import('@/views/NotFoundView')
   },
 ]
-
-
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
@@ -41,6 +37,11 @@ const router = createRouter({
   linkActiveClass: 'active',
   linkExactActiveClass: "exact-active",
 })
+
+
+
+
+
 
 
 

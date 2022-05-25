@@ -1,11 +1,11 @@
 <template>
-  <v-app id="app">
+  <div id="app">
     <header-component />
-    <v-main>
+    <main>
       <router-view />
-    </v-main>
+    </main>
     <footer-component />
-  </v-app>
+  </div>
 </template>
 
 <script>
@@ -40,6 +40,8 @@ html {
 
 #app {
   width: 100%;
+  display: flex;
+  flex-direction: column;
 }
 /* Links */
 
@@ -76,9 +78,9 @@ body {
   margin: 0;
   padding: 0;
   height: 100%;
-  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-    url("@/assets/homePage-background.jpg");
-  background-attachment: fixed;
+  background:  url("@/assets/background.jpg");
+ background-attachment: fixed;
+  
 }
 
 body {

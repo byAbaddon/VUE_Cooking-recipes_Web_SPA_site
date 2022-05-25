@@ -25,7 +25,6 @@
           <a class="nav-link">Logout</a>
         </div>
       </nav>
-      <p style="color: greenyellow">{{ isAuthTwo }}</p>
     </div>
   </header>
 </template>
@@ -67,7 +66,8 @@ export default {
 
     emitter.on("login", () => {
       isAuth.value = true;
-      userName.value = JSON.parse(localStorage.getItem("auth")).displayName;
+      userName.value = JSON.parse(localStorage.getItem("auth")).displayName 
+      
       console.log("Custom event! Login success");
     });
 
@@ -78,14 +78,21 @@ export default {
     });
 
     onMounted(() => {
-      onbeforeunload = (event) => {
-       if (isAuth.value ) {  //user login
-          event.preventDefault() 
-       }
-       
-        
-        // isAuthTwo.value = true
-      };
+
+
+      // onbeforeunload = (event) => {
+      // if (isAuth.value ) {
+      //    event.preventDefault()
+      //    event.returnValue = 'Back to the future'
+      //     console.log(event);
+          
+      // }   
+    
+      // console.log(event);
+      //  }
+
+        // isAuth.value = true
+        // userName.value = JSON.parse(localStorage.getItem("auth")).displayName;
     });
 
     return { userName, isAuth, onPath };
