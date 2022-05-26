@@ -25,6 +25,7 @@ setup(){
 
  onBeforeMount( () => {
     document.querySelector('nav').style.display = 'none'
+      document.querySelector('.mastfoot').style.display = 'none'
  })
 
  const onGoToHomePage = () => {
@@ -33,6 +34,7 @@ setup(){
     }
       
    document.querySelector('nav').style.display = 'flex'
+   document.querySelector('.mastfoot').style.display = 'block'
    router.push('/recipe')
  }
 
