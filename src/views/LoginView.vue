@@ -42,7 +42,9 @@ export default {
       const [email, password] = e.currentTarget.querySelectorAll("input");
       if (  /.+@.+\..+/.test(email.value) && password.value.length > 5) {
          singUser(email.value, password.value)
-         .then(() => emitter.emit('login'))   
+         .then(() => {
+           emitter.emit('login')
+         } )   
       }
       
     }

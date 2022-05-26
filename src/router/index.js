@@ -1,11 +1,9 @@
-import { createRouter, createWebHistory } from 'vue-router'
+import { createRouter, createWebHistory} from 'vue-router'
 
-
-const routes = [
-  {
+const routes = [{
     path: '/',
     name: 'home',
-    component: () => import('@/views/HomeView')
+    component: () => import('@/views/HomeView'),
   },
   {
     path: '/login',
@@ -16,6 +14,14 @@ const routes = [
     path: '/register',
     name: 'register',
     component: () => import('@/views/RegisterView')
+  },
+  {
+    path: '/recipe',
+    name: 'recipe',
+    component: () => import('@/views/RecipeView'),
+    meta: {
+      requiresAuth: true
+    }
   },
   {
     path: '/share',
@@ -39,6 +45,15 @@ const router = createRouter({
 })
 
 
+router.beforeEach((to, from, next) => {
+  if (to.matched.some(record => record.meta.requiresAuth) && !localStorage.getItem("auth")) {
+    next({ name: 'home' }) 
+    return
+    //  localStorage.getItem("auth") == null  ? next({ name: 'home' }) : next()
+  } 
+    next()
+  
+});
 
 
 

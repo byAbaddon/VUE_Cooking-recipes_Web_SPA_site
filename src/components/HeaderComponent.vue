@@ -32,13 +32,14 @@ import router from "@/router";
 import emitter from "tiny-emitter/instance";
 import { ref, onBeforeMount, onMounted } from "vue";
 
+
 export default {
   setup() {
     let isAuth = ref(false);
     const userName = ref("");
 
     const onPath = (e) => {
-      let currentPath = e.target.text.toLowerCase();
+      let currentPath = e.target.text.toLowerCase()
 
       if (currentPath == "logout") {
         //logOut
@@ -47,14 +48,15 @@ export default {
           router.push('/')
           isAuth.value = false
           //go();
-        
+
         return;
       }
+      
 
       currentPath == "sharerecipe"
-        ? (currentPath = "share")
+        ? currentPath = "share"
         : currentPath == "home"
-        ? (currentPath = "/")
+        ? currentPath = "/recipe"
         : null;
       if (currentPath.split(",")[0] != "welcome") {
         router.push(currentPath);
@@ -64,7 +66,7 @@ export default {
     emitter.on("login", () => {
       isAuth.value = true;
       userName.value = JSON.parse(localStorage.getItem("auth")).displayName 
-      
+      router.push('/recipe')
       console.log("Custom event! Login success");
     });
 

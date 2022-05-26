@@ -3,7 +3,7 @@
     <div class="inner">
       <p>
         Made with <span class="text-danger">&hearts;</span> by
-        <router-link to="/"> <a>Cooking</a>. </router-link>
+        <router-link to="/recipe"> <a>Cooking</a>. </router-link>
       </p>
     </div>
   </footer>

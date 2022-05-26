@@ -33,7 +33,7 @@ setup(){
     }
       
    document.querySelector('nav').style.display = 'flex'
-   router.push('/')
+   router.push('/recipe')
  }
 
    return {onGoToHomePage}
