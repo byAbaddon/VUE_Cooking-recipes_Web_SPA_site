@@ -27,8 +27,10 @@ export default {
 Global Style
  */
 <style >   
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
 
 html {
+   
   /* font-family: sans-serif; */
   /*  Disable drag Introduced in IE 10.*/
   -moz-user-select: -moz-none;
@@ -91,6 +93,7 @@ body {
   -webkit-box-pack: center;
   justify-content: center;
   color: white;
+
 }
 
 .cover-container {
@@ -145,6 +148,8 @@ body {
   border-radius: 0.25rem;
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
-
+html, body {
+   font-family: 'Roboto', sans-serif;
+}
 
 </style>
