@@ -35,7 +35,7 @@ setup(){
       
    document.querySelector('nav').style.display = 'flex'
    document.querySelector('.mastfoot').style.display = 'block'
-   router.push('/recipe')
+   router.push('/category')
  }
 
    return {onGoToHomePage}

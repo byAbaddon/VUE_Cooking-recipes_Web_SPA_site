@@ -56,7 +56,7 @@ export default {
       currentPath == "sharerecipe"
         ? currentPath = "share"
         : currentPath == "home"
-        ? currentPath = "/recipe"
+        ? currentPath = "/category"
         : null;
       if (currentPath.split(",")[0] != "welcome") {
         router.push(currentPath);
@@ -66,7 +66,7 @@ export default {
     emitter.on("login", () => {
       isAuth.value = true;
       userName.value = JSON.parse(localStorage.getItem("auth")).displayName 
-      router.push('/recipe')
+      router.push('/category')
       console.log("Custom event! Login success");
     });
 
