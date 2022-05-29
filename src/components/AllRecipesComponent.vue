@@ -4,7 +4,7 @@
     <div class="home-after-login">
       <h1 class="">Our Recipes:</h1>
       <div>
-        <img class="WTF">  <!-- WTF-->
+        <img class="WTF" style="display:none">  <!-- WTF-->
         <img  src="@/assets/images/chef.jpeg" alt="" width="500px"> 
       </div>
       <h4 style="" >Food Not Found...</h4>
@@ -12,7 +12,7 @@
       <h6>Press <router-link to="/share"><span>ShareRecipe</span></router-link> to add new recipe </h6>
   </section>
 
- <section v-else >
+ <section class="recipes-section"   v-else >
       <div class="home-after-login">
         <h1 class="">Our Recipes:</h1>
      </div>
@@ -30,19 +30,20 @@
                 <div class="team-back">
                     <div class="back-side-info">
                         <h4>Ingredients</h4>
-                        <ul v-for="(ingredient, index) in recipe.ingredients" :key="index">
-                            <li v-if="index < 8" >{{ingredient}}</li>
+                        <ul>
+                            <li  v-for="(ingredient, index ) in recipe.ingredients.split('.').splice(0, 15)" :key="index"
+                           
+                            >{{ingredient}}</li>
                         </ul>
-                  
-                   <router-link :to="{ name: 'edit' , params:{id : recipe.id}}">
+                      <p class="link">
+                     <router-link :to="{ name: 'edit' , params:{id : recipe.id}}">
                            <a>View the recipe</a>
-                        </router-link>
-
-                    </div>
-                    <img class="WTF">
+                     </router-link>
+                   </p>
+                 </div>
+                     <img class="WTF"  style="display:none" >
                     <!-- <img class="foodImage"   src="{{foodImageURL}}" />    -->
-                  
-                    <img  class="foodImage" :src="recipe.image">  
+                    <img  class="foodImage" :src="recipe.imageTwo">  
                 </div>
 
             </div>
@@ -58,33 +59,43 @@
 
 
 <script>
-import { db} from '@/service/sdk'      
-import { collection, onSnapshot } from "firebase/firestore";
 import {ref} from "vue";
 
 
 export default {
-  setup() {
-    let allRecipes = ref([])
-    let isNoRecipes = ref(allRecipes.value.length)
-    onSnapshot(collection(db, "recipes"), (doc) => doc.docs.forEach(x => allRecipes.value.push( Object.assign({}, {id: x.id} , x.data()))))
-    // console.log(allRecipes.value);
+  props:['allRecipes'],
+  
+  setup(props) {
+    let isNoRecipes = ref(props.allRecipes.length)
+
+    // console.log(props.allRecipes)
 
 
   // then(e => console.log(e)).catch(e => console.log(e.error))
 
-    return  {isNoRecipes, allRecipes}
+    return  {isNoRecipes,}
    },
 };
 </script>
 
 
 
-
-
-
 <style scoped>
 
+/* .link {
+  position: relative;
+left: 55em;
+bottom: 2em;
+} */
+
+li {
+font-size: smaller;
+ }
+
+.home-after-login h1 {
+ margin-top:1em;
+
+}
 .back-side-info > h4:nth-child(2){
   font-size: 0;
 }
@@ -115,7 +126,7 @@ h1 {
   border-radius: 10px;
   margin-bottom: 5px;
   width: 40%;
-  height: 100%;
+  height: 18em;
   box-shadow: 0 0 0.2rem 0 rgba(68, 68, 68, 0.2);
 }
 
@@ -162,6 +173,7 @@ h1 {
 .our-team-main:hover {
   border-color: #777;
   transition: 0.5s;
+   background: white;
 }
 
 .back-side-info {
@@ -187,15 +199,11 @@ nav a:hover {
 float: inline-end;
 padding-top: -46em;
 position: relative;
-bottom: 14em;
+bottom: 1em;
 right: 4em;
 }
 
 
-
-img.foodImage {
-  max-width: 40%;
-}
 
 
 #foodNotFound {
@@ -282,6 +290,14 @@ h1 {
   text-decoration: underline;
   margin-bottom:1em;
 }
+.home-after-login h1{
+  position: relative;
+  bottom: 2em;
+  margin-bottom: 0;
+}
+
+
+
 
 h4 {
   color: lavender;
@@ -303,9 +319,6 @@ img {
   border-radius: 10px;
   margin: 3em auto;
 }
-
-
-
 
 
 </style>

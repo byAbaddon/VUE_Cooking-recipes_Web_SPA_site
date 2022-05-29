@@ -17,7 +17,7 @@ export default {};
 
 <style scoped>
 .mastfoot {
-  position: absolute;
+  position: fixed;
   bottom: 0;
   left: 44%;
   padding: 10px;
