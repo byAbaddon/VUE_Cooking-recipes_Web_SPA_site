@@ -6,16 +6,15 @@
         through CookUni.
       </p>
     </div>
+    
 </template>
 
 
-<script>
-import {  } from "vue";
+<script >
 
 export default {
-  setup() {
-  },
-};
+
+}
 </script>
 
 

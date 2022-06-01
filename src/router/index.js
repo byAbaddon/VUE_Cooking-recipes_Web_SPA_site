@@ -16,30 +16,23 @@ const routes = [{
     component: () => import('@/views/RegisterView')
   },
 
-
-  {
+    {
     path: '/category',
     name: 'category',
-    component: () => import('@/views/CategoryRecipes.vue'),
-     children: [ 
-       {
-         path: 'recipe/:id', name: 'recipe', component: () => import('@/views/RecipeView/'),
-
-         children: [   
+    component: () => import('@/views/CategoryView.vue'),
+    meta: {
+      requiresAuth: true
+    }
+  },
+    
+  {
+    path: '/category/recipe', name: 'recipe', component: () => import('@/views/RecipeView'),
+       children: [   
           { path  : 'all-recipes/:id' , name: 'all-recipes' , component: () => import('@/components/AllRecipesComponent')},
           { path  : 'edit/:id' , name: 'edit' , component: () => import('@/components/EditRecipeComponent')},
           { path  : 'details/:id', name: 'details' , component: () => import('@/components/DetailsRecipeComponent')},   
          ]
-       },
-        
-    ],
-     
-  
-   
-     meta: {
-         requiresAuth: true
-     }
-  },
+ },
 
   // {
   //   path: '/recipe',
