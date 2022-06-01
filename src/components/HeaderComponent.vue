@@ -54,7 +54,7 @@ export default {
       
 
       currentPath == "sharerecipe"
-        ? currentPath = "share"
+        ? currentPath = "/share"
         : currentPath == "home"
         ? currentPath = "/category"
         : null;

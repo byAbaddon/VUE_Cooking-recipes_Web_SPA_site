@@ -1,12 +1,12 @@
 <template>
   <article>
-    <section v-if="isNoRecipes">
+    <section v-if="isNoRecipes"  >
       <div class="home-after-login">
         <h1 class="">Our Recipes:</h1>
         <div>
           <img class="WTF" style="display: none" />
           <!-- WTF-->
-          <img src="@/assets/images/chef.jpeg" alt="" width="500px" />
+          <img id="chef" src="@/assets/images/chef.jpeg" alt="" width="500px" />
         </div>
         <h4 style="">Food Not Found...</h4>
       </div>
@@ -77,15 +77,17 @@ import { ref, computed } from "vue";
 
 export default {
   setup() {
-    console.log("All recipes page");
     let allRecipes = ref(useSnapshotRecipes());
     const currentCategory = useRoute().query.type;
 
-    let allRecipesByCategory = computed(() => 
-      allRecipes.value.filter((x) => x.category.split(" ")[0].toLowerCase() == currentCategory));
-     
-    let isNoRecipes = computed(()=> allRecipesByCategory.value == 0)
-    
+    let allRecipesByCategory = computed(() =>
+      allRecipes.value.filter(
+        (x) => x.category.split(" ")[0].toLowerCase() == currentCategory
+      )
+    );
+
+    let isNoRecipes = computed(() => allRecipesByCategory.value == 0);
+
     return { isNoRecipes, allRecipesByCategory };
   },
 };
@@ -99,6 +101,22 @@ export default {
 left: 55em;
 bottom: 2em;
 } */
+
+@keyframes fadeIn { 
+  0% { opacity: 0; }
+  20% { opacity: 0; }
+  40% { opacity: 0.3; }
+  60% { opacity: 0.5; }
+  80% { opacity: 0.8; }
+  100% { opacity: 1; }
+ 
+}
+
+#chef {
+   animation-duration: 0.3s;
+   animation-name: fadeIn;
+  
+}
 
 li {
   font-size: smaller;

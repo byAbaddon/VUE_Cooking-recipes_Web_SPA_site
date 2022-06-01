@@ -21,8 +21,6 @@ import {reactive,} from "vue";
 
 export default {
   setup() {
-  
- console.log('category Page');
     const categoryObj = reactive({
       1: {
         type: "Vegetables and legumes/beans",
@@ -57,7 +55,6 @@ export default {
         img: "cocktails",
       },
     });
-
 
     const selectCategory = (e) => {
       const currentCategory = e.split(" ")[0].toLowerCase();
