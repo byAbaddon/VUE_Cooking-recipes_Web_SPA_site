@@ -1,108 +1,99 @@
-<template> 
-<article>
-  <section v-if="isNoRecipes">
-    <div class="home-after-login">
-      <h1 class="">Our Recipes:</h1>
-      <div>
-        <img class="WTF" style="display:none">  <!-- WTF-->
-        <img  src="@/assets/images/chef.jpeg" alt="" width="500px"> 
-      </div>
-      <h4 style="" >Food Not Found...</h4>
-    </div>
-      <h6>Press <router-link to="/share"><span>ShareRecipe</span></router-link> to add new recipe </h6>
-  </section>
-
- <section class="recipes-section"   v-else>
+<template>
+  <article>
+    <section v-if="isNoRecipes">
       <div class="home-after-login">
         <h1 class="">Our Recipes:</h1>
-     </div>
-<div class="container" v-for="(recipe, index) in allRecipesByCategory" :key="index" >
-    <div class="row">
-        <div class="col-lg-12">
-            <div class="our-team-main">
-                <div class="team-front">
-                    <img :src="recipe.image" />
-                    <h3>{{recipe.meal}}</h3>
-                    <p>{{recipe.category}}</p>
-                </div>
-
-         <!-- back side -->
-                <div class="team-back">
-                    <div class="back-side-info">
-                        <h4>Ingredients</h4>
-                        <ul>
-                            <li  v-for="(ingredient, index ) in recipe.ingredients.split('.').splice(0, 15)" :key="index"
-                           
-                            >{{ingredient}}</li>
-                        </ul>
-                      <p class="link">
-                     <router-link :to="{ name: 'edit' , params:{id : recipe.id}}">
-                           <a>View the recipe</a>
-                     </router-link>
-                   </p>
-                 </div>
-                     <img class="WTF"  style="display:none" >
-                    <!-- <img class="foodImage"   src="{{foodImageURL}}" />    -->
-                    <img  class="foodImage" :src="recipe.imageTwo">  
-                </div>
-
-            </div>
+        <div>
+          <img class="WTF" style="display: none" />
+          <!-- WTF-->
+          <img src="@/assets/images/chef.jpeg" alt="" width="500px" />
         </div>
-    </div>
-</div>
+        <h4 style="">Food Not Found...</h4>
+      </div>
+      <h6>
+        Press <router-link to="/share"><span>ShareRecipe</span></router-link> to
+        add new recipe
+      </h6>
+    </section>
 
-   </section>
+    <section class="recipes-section" v-else>
+      <div class="home-after-login">
+        <h1 class="">Our Recipes:</h1>
+      </div>
+      <div
+        class="container"
+        v-for="(recipe, index) in allRecipesByCategory"
+        :key="index"
+      >
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="our-team-main">
+              <div class="team-front">
+                <img :src="recipe.image" />
+                <h3>{{ recipe.meal }}</h3>
+                <p>{{ recipe.category }}</p>
+              </div>
 
- </article>
+              <!-- back side -->
+              <div class="team-back">
+                <div class="back-side-info">
+                  <h4>Ingredients</h4>
+                  <ul>
+                    <li
+                      v-for="(ingredient, index) in recipe.ingredients
+                        .split('.')
+                        .splice(0, 15)"
+                      :key="index"
+                    >
+                      {{ ingredient }}
+                    </li>
+                  </ul>
+                  <p class="link">
+                    <router-link
+                      :to="{ name: 'edit', params: { id: recipe.id } }"
+                    >
+                      <a>View the recipe</a>
+                    </router-link>
+                  </p>
+                </div>
+                <img class="WTF" style="display: none" />
+                <!-- <img class="foodImage"   src="{{foodImageURL}}" />    -->
+                <img class="foodImage" :src="recipe.imageTwo" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <h4 style="color: red">{{ test }}</h4>
+  </article>
 </template>
 
 
 <script>
 import useSnapshotRecipes from "@/composables/useSnapshotRecipes";
-import {useRoute} from "vue-router";
-import { ref,  } from "vue";
+import { useRoute } from "vue-router";
+import { ref, computed } from "vue";
 
 export default {
   setup() {
-    let allRecipes = ref(useSnapshotRecipes()) 
-    const currentCategory = useRoute().query.type
-    let isNoRecipes = ref('')
-    let allRecipesByCategory = ''
+    console.log("All recipes page");
+    let allRecipes = ref(useSnapshotRecipes());
+    const currentCategory = useRoute().query.type;
 
- setTimeout(() => {  
-    allRecipesByCategory = allRecipes.value.filter(x => x.category.split(' ')[0].toLowerCase() == currentCategory) 
-    isNoRecipes = allRecipesByCategory.length == 0
-      console.log( isNoRecipes,   ...allRecipesByCategory );
-    }, 1000);
+    let allRecipesByCategory = computed(() => 
+      allRecipes.value.filter((x) => x.category.split(" ")[0].toLowerCase() == currentCategory));
      
- 
-
-        console.log('All recipes page',);
-
-allRecipesByCategory =
-{
-  "id": "yzTebOQn6F0PJj1BBR9l",
-  "category": "Grain Food",
-  "preparation": " Step 1  Preheat oven to 350 degrees F (175 degrees C). Place the squash halves into a large baking dish with the cut-sides facing down. Step 2  Bake in the preheated oven until easily pierced with a knife, about 40 minutes. Cool squash for 10 minutes. Step 3  Shred the inside of the squash with a fork and transfer to a bowl. Add olive oil, salt, and pepper to shredded squash and toss to coat. Serve with Parmesan cheese.",
-  "meal": "Spaghetti Squash",
-  "ingredients": " 1 spaghetti squash, halved and seeded 1 tablespoon extra-virgin olive oil salt and freshly ground black pepper to taste 1 tablespoon freshly grated Parmesan cheese, or to taste ",
-  "description": "This is a super easy recipe for spaghetti squash that I often eat for lunch when I am looking for something healthy and quick. ",
-  "image": "https://imagesvc.meredithcorp.io/v3/mm/image?url=https%3A%2F%2Fpublic-assets-ucg.meredithcorp.io%2F150932045c8bc6e89b9c613469e5d2a6%2F4589476.jpg&w=596&h=399&c=sc&poi=face&q=60"
-}
-       
+    let isNoRecipes = computed(()=> allRecipesByCategory.value == 0)
     
-
-    return  { isNoRecipes, ...allRecipesByCategory}
-   },
-
-}
-
+    return { isNoRecipes, allRecipesByCategory };
+  },
+};
 </script>
 
 
 
 <style scoped>
-
 /* .link {
   position: relative;
 left: 55em;
@@ -110,18 +101,15 @@ bottom: 2em;
 } */
 
 li {
-font-size: smaller;
- }
+  font-size: smaller;
+}
 
 .home-after-login h1 {
- margin-top:1em;
-
+  margin-top: 1em;
 }
-.back-side-info > h4:nth-child(2){
+.back-side-info > h4:nth-child(2) {
   font-size: 0;
 }
-
-
 
 h1 {
   color: #fff;
@@ -184,8 +172,6 @@ h1 {
   transition: all 0.5s ease;
 }
 
-
-
 .our-team-main:hover .team-front {
   bottom: -400px;
   transition: all 0.5s ease;
@@ -194,7 +180,7 @@ h1 {
 .our-team-main:hover {
   border-color: #777;
   transition: 0.5s;
-   background: white;
+  background: white;
 }
 
 .back-side-info {
@@ -215,17 +201,13 @@ nav a:hover {
   color: white;
 }
 
-
-.foodImage{
-float: inline-end;
-padding-top: -46em;
-position: relative;
-bottom: 1em;
-right: 4em;
+.foodImage {
+  float: inline-end;
+  padding-top: -46em;
+  position: relative;
+  bottom: 1em;
+  right: 4em;
 }
-
-
-
 
 #foodNotFound {
   margin: 0 auto;
@@ -294,11 +276,9 @@ form textarea {
   text-align: center;
 }
 
-
 /*our-team-main*/
 
-
-  /* no recipe */
+/* no recipe */
 .home-after-login {
   display: flex;
   flex-direction: column;
@@ -309,16 +289,13 @@ form textarea {
 h1 {
   color: lavender;
   text-decoration: underline;
-  margin-bottom:1em;
+  margin-bottom: 1em;
 }
-.home-after-login h1{
+.home-after-login h1 {
   position: relative;
   bottom: 2em;
   margin-bottom: 0;
 }
-
-
-
 
 h4 {
   color: lavender;
@@ -340,6 +317,4 @@ img {
   border-radius: 10px;
   margin: 3em auto;
 }
-
-
 </style>
