@@ -2,7 +2,7 @@
   <article>
     <section v-if="isNoRecipes"  >
       <div class="home-after-login">
-        <h1 class="">Our Recipes:</h1>
+        <h1 class="title">Our Recipes:</h1>
         <div>
           <img class="WTF" style="display: none" />
           <!-- WTF-->
@@ -18,7 +18,7 @@
 
     <section class="recipes-section" v-else>
       <div class="home-after-login">
-        <h1 class="">Our Recipes:</h1>
+        <h1 class="title">Our Recipes:</h1>
       </div>
       <div
         class="container"
@@ -56,9 +56,9 @@
                     </router-link>
                   </p>
                 </div>
-                <img class="WTF" style="display: none" />
+                <!-- <img class="WTF" style="display: none" /> -->
                 <!-- <img class="foodImage"   src="{{foodImageURL}}" />    -->
-                <img class="foodImage" :src="recipe.imageTwo" />
+                <img class="foodImage"  :src="recipe.image" />
               </div>
             </div>
           </div>
@@ -102,6 +102,11 @@ left: 55em;
 bottom: 2em;
 } */
 
+.title {
+ color: darkkhaki;
+ font-weight: bold;
+}
+
 @keyframes fadeIn { 
   0% { opacity: 0; }
   20% { opacity: 0; }
@@ -120,6 +125,7 @@ bottom: 2em;
 
 li {
   font-size: smaller;
+  /* color: darkgoldenrod; */
 }
 
 .home-after-login h1 {
@@ -130,7 +136,7 @@ li {
 }
 
 h1 {
-  color: #fff;
+  color: darkkhaki;
   margin: 40px 0 60px 0;
   font-weight: 300;
 }
@@ -169,13 +175,13 @@ h1 {
 
 .team-back {
   width: 100%;
-  height: auto;
+  height: 40em;
   position: absolute;
   top: 0;
   left: 0;
   padding: 5px 15px 0 15px;
   text-align: left;
-  background: white;
+  background: rgb(240, 240, 240,1);
   color: black;
 }
 
@@ -184,12 +190,19 @@ h1 {
   height: auto;
   position: relative;
   z-index: 10;
-  background: rgba(255, 255, 255, 1);
+  background: rgb(240, 240, 240,1);
   padding: 15px;
   bottom: 0px;
   transition: all 0.5s ease;
 }
 
+.team-front h3{
+  color:grey;
+}
+.team-front p{
+  color:darkgoldenrod;
+  font-style: italic;
+}
 .our-team-main:hover .team-front {
   bottom: -400px;
   transition: all 0.5s ease;
@@ -206,8 +219,12 @@ h1 {
   width: 50%;
 }
 
+.back-side-info h4 {
+  color:crimson;
+}
+
 .back-side-info a {
-  color: black;
+  color: darkblue;
   font-weight: bold;
 }
 
