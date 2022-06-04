@@ -48,9 +48,9 @@
                       {{ ingredient }}
                     </li>
                   </ul>
-                  <p class="link">
+                  <p class="link" @click="goToDetailsComponent"> 
                     <router-link
-                      :to="{ name: 'edit', params: { id: recipe.id } }"
+                      :to="{ name: 'details', params: { id: recipe.id } }"
                     >
                       <a>View the recipe</a>
                     </router-link>
@@ -73,7 +73,7 @@
 <script>
 import useSnapshotRecipes from "@/composables/useSnapshotRecipes";
 import { useRoute } from "vue-router";
-import { ref, computed } from "vue";
+import { ref, computed,} from "vue";
 
 export default {
   setup() {

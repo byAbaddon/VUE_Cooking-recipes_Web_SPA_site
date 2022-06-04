@@ -3,7 +3,7 @@
     <div class="col-md-12">
         <div class="recepieInfo">
             <div class="detailsFoodImage">
-                <img src="{{}}" alt="foodImageURL">
+                <img src="{{currentRecipe.image}}" alt="foodImageURL">
             </div>
 
             <div class="infoPack">
@@ -33,19 +33,32 @@
 </template>
 
 <script>
-import { ref } from "vue";
+
+
+import { ref} from "vue";
 
 export default {
 
+
 setup(){
   let isOwner =ref(false)
+  // let recipeId = useRoute().params.id
 
+    
 
-  return{ isOwner} 
+    let currentRecipe = ''
+
+   
+         
+ 
+  return{ isOwner, currentRecipe} 
 }
 }
 </script>
 
-<style>
-
+<style scoped>
+.form-layout{
+  width: 60%;
+  margin: 10em auto;
+}
 </style>
