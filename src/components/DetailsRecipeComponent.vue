@@ -45,7 +45,7 @@
 <script>
 import { loadDetails } from "@/service/detailsRecipe";
 import { useRoute } from "vue-router";
-import { ref } from "vue";
+import { ref, onUnmounted} from "vue";
 
 export default {
   setup() {
@@ -54,8 +54,11 @@ export default {
     let currentRecipe = ref("");
 
     loadDetails(recipeId).then((e) => (currentRecipe.value = e));
-
-    return { isOwner, currentRecipe };
+ 
+    document.querySelector('#footer').style.display = 'none'
+    onUnmounted(() => document.querySelector('#footer').style.display = 'block')
+ 
+    return { isOwner, currentRecipe, };
   },
 };
 </script>
@@ -91,7 +94,5 @@ li {
   flex-direction: row;
 }
 
-footer {
-  display: none;
-}
+
 </style>

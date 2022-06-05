@@ -1,5 +1,5 @@
 <template>
-  <footer class="mastfoot mt-5 text-center text-light">
+  <footer id="footer" class="mastfoot mt-5 text-center text-light">
     <div class="inner">
       <p>
         Made with <span class="text-danger">&hearts;</span> by
