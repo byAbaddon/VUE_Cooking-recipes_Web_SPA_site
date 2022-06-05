@@ -25,6 +25,7 @@ export default {};
   /* width:100%; */
   /* height: 30px; Height of the footer */
   /* background: rgb(20, 20, 20); */
+ 
 }
 a {
   color: green;

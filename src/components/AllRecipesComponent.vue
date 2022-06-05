@@ -42,7 +42,7 @@
                     <li
                       v-for="(ingredient, index) in recipe.ingredients
                         .split('.')
-                        .splice(0, 15)"
+                        .splice(0, 13)"
                       :key="index"
                     >
                       {{ ingredient }}
