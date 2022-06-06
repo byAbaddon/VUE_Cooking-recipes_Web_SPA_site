@@ -1,4 +1,5 @@
 <template>
+ <div>
   <form class="text-center p-5 form-layout" @submit.prevent="onSubmit">
     <p class="h4 mb-4">Sign in</p>
     <input
@@ -28,23 +29,36 @@
       Sign in
     </button>
   </form>
+  <div class="message">
+    <p> {{message}}</p>
+  </div>
+ </div>
 </template>
 
 <script>
 import {singUser} from '@/service/sing'
 import emitter  from 'tiny-emitter/instance'
+import { ref } from "vue";
+
 
 export default {
   
   
   setup() { 
+    let message = ref('')
     const onSubmit = (e) => {
       const [email, password] = e.currentTarget.querySelectorAll("input");
       if (  /.+@.+\..+/.test(email.value) && password.value.length > 5) {
          singUser(email.value, password.value)
-         .then(() => {
-           emitter.emit('login')
-         } )   
+           .then((e) => {
+             if (e == 'ok') {
+                message= 'Success Login'
+               emitter.emit('login')
+             } else {
+               message = e
+             }
+          
+         })   
       }
       
     }
@@ -52,7 +66,7 @@ export default {
 
    
 
-   return { onSubmit,}
+   return { onSubmit, message}
 }
 
   
@@ -63,6 +77,12 @@ export default {
 <style scoped>
 form {
   width: 30%;
-  margin: 10em auto;
+  margin: 6em auto;
+}
+
+.message{
+  text-align: center;
+  color: green;
+  font-style: oblique;
 }
 </style>

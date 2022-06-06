@@ -111,19 +111,11 @@ export default {
 <style scoped>
 form {
   width: 30%;
-  margin: 10em auto;
+  margin: 6em auto;
 }
-/* .user-names {
-  
- width: 22em;
-  display: flex;
-  flex-wrap: wrap-reverse; 
+.my-4{
+  margin-bottom: 0;
 }
-
-#defaultRegisterFormFirstName {
-  margin-right: 0em;
-}
-*/
 
 #defaultRegisterFormLastName {
   margin-top: 1.3em;

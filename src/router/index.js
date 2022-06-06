@@ -34,19 +34,6 @@ const routes = [{
          ]
  },
 
-  // {
-  //   path: '/recipe',
-  //   name: 'recipe',
-  //   component: () => import('@/views/RecipeView/'),
-  //    children: [ 
-  //      { path  : 'all-recipes/:id' , name: 'all-recipes' , component: () => import('@/components/AllRecipesComponent')},
-  //      { path  : 'edit/:id' , name: 'edit' , component: () => import('@/components/EditRecipeComponent')},
-  //      { path  : 'details/:id', name: 'details' , component: () => import('@/components/DetailsRecipeComponent')},   
-  //   ],
-  //    meta: {
-  //        requiresAuth: true
-  //    }
-  // },
   {
     path: '/share',
     name: 'share',
