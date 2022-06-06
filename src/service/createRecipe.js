@@ -1,4 +1,4 @@
-import {db} from '@/services/sdk'
+import {db} from '@/service/sdk'
 import { collection, doc, setDoc } from "firebase/firestore"; 
 
 const addRecipe = async (recipe) => {
@@ -6,4 +6,4 @@ const addRecipe = async (recipe) => {
   await setDoc(newRecipeRef, Object.assign({}, { id: newRecipeRef.id }, recipe ))
 }
 
- export default addRecipe
+export default addRecipe 

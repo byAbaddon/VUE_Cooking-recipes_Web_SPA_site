@@ -36,14 +36,13 @@
           </div>      
         </div>      
       </div>
-      <message-component id="modal"/>
     </div> 
   </div>
 
 </template>
 
 <script>
-import MessageComponent from "@/components/MessageComponent.vue";
+
 import { loadDetails } from "@/service/detailsRecipe";
 import updateRecipeLike  from '@/service/likeRecipes'
 // import router from "@/router";
@@ -51,7 +50,7 @@ import { useRoute } from "vue-router"
 import { ref, onUnmounted} from "vue";
 
 export default {
-  components:{MessageComponent},
+
   setup() {
     let vote = false
     let owner = ref(JSON.parse(localStorage.getItem('auth')).uid );
