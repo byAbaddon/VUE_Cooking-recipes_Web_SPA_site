@@ -26,8 +26,8 @@
 
         <div class="actions">
           <div v-if="owner == currentRecipe.creatorId">
-            <a class="btn btn-danger" href="#/delete/{{'objectId'}}">Archive</a>
-            <a class="btn btn-info" href="#/edit/{{'objectId'}}">Edit</a>
+            <a class="btn btn-danger" @click="archiveRecipe" >Archive</a>
+            <a class="btn btn-info" @click="editRecipe">Edit</a>
           </div>
           <div v-else>
             <a class="btn btn-success" @click="btnOnLike"
@@ -42,7 +42,7 @@
 </template>
 
 <script>
-
+import deleteRecipe  from '@/service/deleteRecipe'
 import { loadDetails } from "@/service/detailsRecipe";
 import updateRecipeLike  from '@/service/likeRecipes'
 // import router from "@/router";
@@ -80,9 +80,18 @@ export default {
     
 
     }
-   
 
-    return { owner, currentRecipe, btnOnLike};
+    const archiveRecipe = () => {
+      deleteRecipe(recipeId)
+        .then(() => console.log('Success deleted recipe'))
+        .catch((e) => console.log(e.error))
+    } 
+     
+    const editRecipe = () => {
+      1
+    } 
+
+    return { owner, currentRecipe, btnOnLike, archiveRecipe, editRecipe};
   },
 };
 </script>

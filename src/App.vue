@@ -99,6 +99,7 @@ body {
 
 .cover-container {
   max-width: 42em;
+
 }
 
 /*
