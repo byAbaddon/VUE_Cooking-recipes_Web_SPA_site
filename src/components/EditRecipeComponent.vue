@@ -80,15 +80,19 @@
 </template> 
 
 <script>
-import { ref, watchEffect} from "vue";
+import router from "@/router";
 import { useRoute } from "vue-router";
 import editCurrentRecipe from "@/service/editRecipe";
 import loadRecipe from "@/service/getCurrentRecipe";
+import { ref, watchEffect } from "vue";
+
+
 
 export default {
   setup() {
     let recipeId = useRoute().params.id
     let dataFrom = ref('')
+ 
 
    
     loadRecipe(recipeId)
@@ -112,7 +116,10 @@ export default {
         /[http://|https://]/.test(image)
       ) {
         editCurrentRecipe( recipeId ,{ meal, ingredients, preparation, description, image, category})
-          .then(() => console.log("Success edit recipe"))
+          .then(() => {
+            router.push({ name: 'message', query: { 'from': 'edit' } })
+            console.log("Success edit recipe")
+          })
           .catch((e) => console.log(e.error));
       }
     };

@@ -12,25 +12,13 @@
 </template>
 
 <script>
-// import router from '@/router'
+import router from '@/router'
 import {useRoute} from "vue-router";
 import { ref, onUnmounted, onMounted} from "vue";
 
 export default {
   setup() {
-  onMounted(() => {
-      // document.getElementsByTagName('html').style.display = 'none' 
-      // document.getElementsByTagName('header').style.display = 'none' 
-      document.getElementsByTagName('footer').style.display = 'none' 
-     })
-
-
-    onUnmounted(() => {
-      document.getElementsByTagName('html').style.display = 'flex' 
-      document.getElementsByTagName('header').style.display = 'block' 
-      document.getElementsByTagName('footer').style.display = 'block' 
-    })
-
+ 
     let message = ref('')
     let showRedirect = ref(false)
     let pathFrom = useRoute().query.from
@@ -39,25 +27,35 @@ export default {
     switch (pathFrom) {
       case 'share': message.value = 'Success add new recipe!'; break
       case 'archive': message.value = 'This recipe was deleted success!'; break
-      
-     
+      case 'edit': message.value = 'Edit recipe was success!'; break  
     }
 
     setTimeout(() => { showRedirect.value = true }, 2000);
      
-    // setTimeout(() => {
-    //    router.push('/category')
-    // }, 3000);
- 
-   return {message,showRedirect}
+    setTimeout(() => {
+       router.push('/category')
+    }, 3000);
+
+    onMounted(() => {
+      document.querySelector('body').style.background = 'black' 
+      document.querySelector('header').style.display = 'none' 
+      document.querySelector('footer').style.display = 'none' 
+     })
+
+
+    onUnmounted(() => {
+      document.querySelector('body').style = "background : url('../assets/image/background.jpg')"
+      document.querySelector('header').style.display = 'block' 
+      document.querySelector('footer').style.display = 'block' 
+    })
+
+     return {message,showRedirect}
   }
 }
 </script>
 
 <style scoped>
-section {
-  background: black;
-}
+
 
 h1 {
   font-weight: bold;

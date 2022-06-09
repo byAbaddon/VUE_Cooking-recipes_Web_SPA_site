@@ -11,14 +11,27 @@
 <script>
 import HeaderComponent from "./components/HeaderComponent.vue";
 import FooterComponent from "./components/FooterComponent.vue";
-
+import { onBeforeMount } from "vue";
 
 // onBeforeMount, 
 export default {
   name: "App",
   components: { HeaderComponent, FooterComponent },
 
-  setup() {}
+  setup() {   
+    onBeforeMount(() => (
+      window.addEventListener("beforeunload", (event) => {
+        if (localStorage.getItem("auth") != null) {
+          event.returnValue
+          event.preventDefault()
+          return
+        }
+        return
+      })
+     )
+    )
+
+  }
 }
 </script>
 

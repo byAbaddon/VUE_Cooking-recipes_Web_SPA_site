@@ -16,7 +16,10 @@
         </div>
 
         <div v-else>
-          <a class="nav-link" id="ignore-hover">Welcome, Chef <span>{{ userName }}</span  >!</a  >
+          <a class="nav-link" id="ignore-hover"
+            >Welcome, Chef <span>{{ userName }}</span
+            >!</a
+          >
           <a class="nav-link">Home</a>
           <a class="nav-link">ShareRecipe</a>
           <a class="nav-link" id="logout">Logout</a>
@@ -30,8 +33,7 @@
 <script>
 import router from "@/router";
 import emitter from "tiny-emitter/instance";
-import { ref, onBeforeMount, onMounted } from "vue";
-
+import { ref, onMounted } from "vue";
 
 export default {
   setup() {
@@ -39,24 +41,23 @@ export default {
     const userName = ref("");
 
     const onPath = (e) => {
-      let currentPath = e.target.text.toLowerCase()
+      let currentPath = e.target.text.toLowerCase();
 
       if (currentPath == "logout") {
         //logOut
-          console.log("Logout success. Storage was clear!");
-          localStorage.clear();
-          router.push('/')
-          isAuth.value = false
-          //go();
+        console.log("Logout success. Storage was clear!");
+        localStorage.clear();
+        router.push("/");
+        isAuth.value = false;
+      
 
         return;
       }
-      
 
       currentPath == "sharerecipe"
-        ? currentPath = "/share"
+        ? (currentPath = "/share")
         : currentPath == "home"
-        ? currentPath = "/category"
+        ? (currentPath = "/category")
         : null;
       if (currentPath.split(",")[0] != "welcome") {
         router.push(currentPath);
@@ -65,33 +66,17 @@ export default {
 
     emitter.on("login", () => {
       isAuth.value = true;
-      userName.value = JSON.parse(localStorage.getItem("auth")).displayName 
-      router.push('/category')
+      userName.value = JSON.parse(localStorage.getItem("auth")).displayName;
+      router.push("/category");
       console.log("Custom event! Login success");
     });
 
-    onBeforeMount(() => {
-      if (localStorage.getItem("auth") == null) {      //user not login
-        router.push("/").catch(() => {});
-      }
-    });
-
     onMounted(() => {
-
-
-      // onbeforeunload = (event) => {
-      // if (isAuth.value ) {
-      //    event.preventDefault()
-      //    event.returnValue = 'Back to the future'
-      //     console.log(event);
-          
-      // }   
-    
-      // console.log(event);
-      //  }
-
-        // isAuth.value = true
-        // userName.value = JSON.parse(localStorage.getItem("auth")).displayName;
+      if (localStorage.getItem("auth") != null) {  //user login
+        isAuth.value = true;
+        userName.value = JSON.parse(localStorage.getItem("auth")).displayName;
+      }   
+        router.push("/").catch(() => {})
     });
 
     return { userName, isAuth, onPath };
@@ -163,14 +148,13 @@ nav div {
     float: right;
   }
 
- #logout:hover{
-   color:red;
- }
+  #logout:hover {
+    color: red;
+  }
 
- #ignore-hover:hover {
+  #ignore-hover:hover {
     pointer-events: none;
- }
-
+  }
 }
 </style>
 
