@@ -42,10 +42,11 @@
 </template>
 
 <script>
+
 import deleteRecipe  from '@/service/deleteRecipe'
 import { loadDetails } from "@/service/detailsRecipe";
 import updateRecipeLike  from '@/service/likeRecipes'
-// import router from "@/router";
+import router from "@/router";
 import { useRoute } from "vue-router"
 import { ref, onUnmounted} from "vue";
 
@@ -88,10 +89,12 @@ export default {
     } 
      
     const editRecipe = () => {
-      1
+    router.push({
+        path: `/category/recipe/edit/${recipeId}`,
+      });
     } 
 
-    return { owner, currentRecipe, btnOnLike, archiveRecipe, editRecipe};
+    return { owner, currentRecipe, btnOnLike, archiveRecipe, editRecipe,};
   },
 };
 </script>

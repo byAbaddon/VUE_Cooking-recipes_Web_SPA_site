@@ -1,9 +1,21 @@
-import { db } from '@/service/sdk'                
-import { doc, setDoc } from "firebase/firestore"; 
+// import { db } from '@/service/sdk'                
+// import { doc, setDoc } from "firebase/firestore"; 
 
- const editRecipe = async (key, objectData) => {
-   await setDoc(doc(db, "recipes", key), objectData)
- }
+//  const editCurrentRecipe = async (key, objectData) => {
+//    await setDoc(doc(db, "recipes", key), objectData)
+//  }
 
 
- export default editRecipe
+//  export default editCurrentRecipe
+
+
+import { db } from '@/service/sdk'     
+import { doc, updateDoc } from "firebase/firestore";
+
+
+const editCurrentRecipe = async (key, objectData) => {
+  const editDone = doc(db, "recipes", key)
+  await updateDoc(editDone, objectData)
+}
+
+export default editCurrentRecipe
