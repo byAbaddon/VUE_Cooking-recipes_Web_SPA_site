@@ -85,8 +85,10 @@
 </template> 
 
 <script>
+
 import {} from "vue";
 import addRecipe  from "@/service/createRecipe";
+import router from "@/router"
 export default {
   setup() {
     const submit = () => {
@@ -106,7 +108,10 @@ export default {
               meal, ingredients, preparation, description, image, category, likes: 0, voters: [],
               creatorId: JSON.parse(localStorage.getItem('auth')).uid
               })
-          .then(() => console.log("Success add new recipe"))
+            .then(() => {
+              console.log("Success add new recipe")
+              router.push({ name: 'message', query: { 'from': 'share' }})
+            })
           .catch((e) => console.log(e.error));
       }
     };

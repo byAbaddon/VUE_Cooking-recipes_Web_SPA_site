@@ -84,8 +84,10 @@ export default {
 
     const archiveRecipe = () => {
       deleteRecipe(recipeId)
-        .then(() => console.log('Success deleted recipe'))
-        .catch((e) => console.log(e.error))
+        .then(() => {
+           console.log('Success deleted recipe')
+             router.push({ name: 'message', query: { 'from': 'archive' }})
+        }) .catch((e) => console.log(e.error))
     } 
      
     const editRecipe = () => {

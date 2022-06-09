@@ -39,6 +39,11 @@ const routes = [{
     name: 'share',
     component: () => import('@/views/ShareView'),
   },
+  {
+    path: '/message',
+    name: 'message',
+    component: () => import('@/views/MessageCenterView'),
+  },
 
   {
     path: '/:pathMatch(.*)*',
