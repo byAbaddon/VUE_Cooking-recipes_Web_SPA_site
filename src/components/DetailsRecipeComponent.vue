@@ -26,13 +26,14 @@
 
         <div class="actions">
           <div v-if="owner == currentRecipe.creatorId">
-            <a class="btn btn-danger" @click="archiveRecipe" >Archive</a>
             <a class="btn btn-info" @click="editRecipe">Edit</a>
+            <a class="btn btn-danger" @click="archiveRecipe" >Archive</a>
+            <a class="btn btn-warning" @click="btnBack">Back</a>
           </div>
           <div v-else>
             <a class="btn btn-success" @click="btnOnLike"
-              >Likes: {{ currentRecipe.likes }}</a
-            >       
+              >Likes: {{ currentRecipe.likes }}</a>       
+            <a id="btnBackTwo" class="btn btn-warning" @click="btnBack">Back</a>
           </div>      
         </div>      
       </div>
@@ -101,7 +102,10 @@ export default {
       });
     } 
 
-    return { owner, currentRecipe, btnOnLike, archiveRecipe, editRecipe,};
+    const btnBack = () => router.go(-1)
+
+
+    return { owner, currentRecipe, btnOnLike, archiveRecipe, editRecipe, btnBack};
   },
 };
 </script>
@@ -113,6 +117,21 @@ export default {
   display: none;
 }
 
+a{
+  padding-right: 1.8em;
+  padding-left: 1.8em;
+  border-radius: 8px;
+}
+a.btn:nth-child(2){
+  padding: 6px;
+  padding-right: 1em;
+  padding-left: 1em;
+}
+
+#btnBackTwo{
+  padding-right: 2.4em;
+  padding-left: 2.4em;
+ }
 
 .form-layout {
   width: 60%;
