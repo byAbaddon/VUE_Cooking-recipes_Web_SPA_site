@@ -8,7 +8,7 @@
         name="email"
         class="form-control mb-4"
         placeholder="email"
-        value="koko@abv.bg"
+        value=""
         required
       />
 
@@ -19,7 +19,7 @@
         class="form-control"
         placeholder="Password"
         minlength="6"
-        value="111111"
+        value=""
         required
       />
       <hr />

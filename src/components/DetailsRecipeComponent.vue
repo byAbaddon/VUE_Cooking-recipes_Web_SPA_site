@@ -27,7 +27,7 @@
         <div class="actions">
           <div v-if="owner == currentRecipe.creatorId">
             <a class="btn btn-info" @click="editRecipe">Edit</a>
-            <a class="btn btn-danger" @click="archiveRecipe" >Archive</a>
+            <a class="btn btn-danger" @click="archiveRecipe" >Delete</a>
             <a class="btn btn-warning" @click="btnBack">Back</a>
           </div>
           <div v-else>

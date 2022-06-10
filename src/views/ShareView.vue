@@ -2,7 +2,6 @@
   <form
     class="text-center p-5 form-layout"
     id="share"
-    ref="form"
     @submit.prevent="submit"
   >
     <p class="h4 mb-4">Share Recipe</p>
@@ -15,7 +14,7 @@
       required
       minlength="2"
       maxlength="50"
-      value="Green Beans and Potatoes"
+      value=""
     />
 
     <input
@@ -27,10 +26,7 @@
       minlength="10"
       maxlength="1000"
       required
-      value=" 1 pound fresh green beans, trimmed.
-                1 pound small new potatoes, halved.
-                water to cover.
-                2 (1 inch) cubes salt pork, or more to taste "
+      value=""
     />
 
     <textarea
@@ -42,8 +38,7 @@
       minlength="10"
       maxlength="1000"
       required
-      v-bind:value="`Layer green beans and potatoes in the bottom of a slow cooker. Add just enough water to barely cover. Top with salt pork.
-                    Step 2 Cover and cook on Low until tender, 6 to 8 hours.`"
+      value=""
     ></textarea>
 
     <textarea
@@ -55,7 +50,7 @@
       minlength="10"
       maxlength="1000"
       required
-      :value ="'This easy dish is one of our favorite summertime meals, fresh green beans and potatoes thrown in a slow cooker!'"
+      value =""
     ></textarea>
 
     <input
@@ -66,7 +61,7 @@
       minlength="10"
       maxlength="200"
       required
-      value="https://imagesvc.meredithcorp.io/v3/mm/image?url=https%3A%2F%2Fimages.media-allrecipes.com%2Fuserphotos%2F7016624.jpg&w=596&h=399&c=sc&poi=face&q=60"
+      value=""
     />
     <p>{{ value }}</p>
     <select name="category" required>
@@ -81,18 +76,21 @@
     </select>
     <div>
      <button class="btn btn-danger w-25 m-auto my-4 btn-block">Share it</button>
+     
     </div>
-  
+   <p class="message">{{message}}</p>
   </form>
 </template> 
 
 <script>
 
-import {} from "vue";
+import {ref, onBeforeUnmount} from "vue";
 import addRecipe  from "@/service/createRecipe";
 import router from "@/router"
 export default {
   setup() {
+    let message = ref('')
+
     const submit = () => {
       const form = new FormData(document.getElementById("share"));
       const meal = form.get("meal").trim();
@@ -102,27 +100,39 @@ export default {
       const image = form.get("image").trim();
       const category = form.get("category");
       // console.log(meal, ingredients, preparation, description, image, category)
-      if (
-        category !== "Select category..." &&
-        /[http://|https://]/.test(image)
-      ) {
+      if (  category !== "Select category..." && /[http://|https://]/.test(image)  ) {
+      
           addRecipe({
               meal, ingredients, preparation, description, image, category, likes: 0, voters: [],
               creatorId: JSON.parse(localStorage.getItem('auth')).uid
               })
             .then(() => {
+              document.querySelector("#share").reset()
               console.log("Success add new recipe")
               router.push({ name: 'message', query: { 'from': 'share' }})
             })
           .catch((e) => console.log(e.error));
+      } else {
+          console.log('wrong input');
+          message.value = "Wrong input field/s or not select category!"
+          setTimeout(() => message.value = '', 3000)
       }
     };
-    return { submit };
+
+onBeforeUnmount(()=>  document.querySelector("#share").reset()  )
+
+    return { submit, message};
   },
 };
 </script>
 
 <style scoped >
+.message {
+  color: red;
+  position: relative;
+  bottom: 1.2em;
+}
+
 form {
   width: 38%;
   height: 40em;

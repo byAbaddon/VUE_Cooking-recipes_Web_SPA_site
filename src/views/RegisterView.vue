@@ -82,11 +82,11 @@ import router from "@/router"
 export default {
   setup() {
     const formData = reactive({
-      firstName: 'John',
-      lastName: 'Rambo',
-      email: 'koko@abv.bg',
-      password:'111111',
-      rePassword:'111111',
+      firstName: '',
+      lastName: '',
+      email: '',
+      password:'',
+      rePassword:'',
     })
 
    const submit = () => {
