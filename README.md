@@ -1,6 +1,6 @@
 # cooking-recipes web SPA
 
-video intro: https://youtu.be/KXBntfgg1j4
+video intro: https://youtu.be/EQS0DxqJHVE
 ## Using vue 3 composition and bootstrap
 ### No support phone responsibility, maybe someday ;))
 
