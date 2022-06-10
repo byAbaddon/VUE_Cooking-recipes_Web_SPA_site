@@ -32,6 +32,7 @@
 </template>
 
 <script>
+import router from "@/router"
 import { singUser } from "@/service/sing";
 import emitter from "tiny-emitter/instance";
 
@@ -40,11 +41,18 @@ export default {
     const onSubmit = (e) => {
       const [email, password] = e.currentTarget.querySelectorAll("input");
       if (/.+@.+\..+/.test(email.value) && password.value.length > 5) {
-        singUser(email.value, password.value).then((e) => {
+        singUser(email.value, password.value)
+          .then((e) => {
           if (e == "ok") {
             emitter.emit("login");
+          } else {
+              router.push({ name: 'message', query: { 'from': 'loginFail' , 'error' : e } })
           }
-        });
+          })
+       
+          
+          
+        
       }
     };
 

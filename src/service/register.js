@@ -12,12 +12,14 @@ const registrationNewUser = ({ firstName, email, password }) => createUserWithEm
       localStorage.setItem('auth', JSON.stringify(userCredential.user)) //save user data )
 
       updateUserData(firstName)
-      router.push('/login') //redirect to page   
+      router.push('/login') //redirect to page
+      return 'ok'   
     })
     .catch((error) => {
       const errorCode = error.code;
       const errorMessage = error.message;
       console.log('Error register: ', errorCode, ' - ', errorMessage)
+      return error.message
     })
 
 

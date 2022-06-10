@@ -15,7 +15,7 @@ const singUser = (email, password) => signInWithEmailAndPassword(getAuth(), emai
   .catch((error) => {
     // const errorCode = error.code;
     const errorMessage = error.message;
-    console.log(error, ' - ', errorMessage);
+    // console.log(error, ' - ', errorMessage);
     return errorMessage
   });
 

@@ -45,7 +45,7 @@
 
 import deleteRecipe  from '@/service/deleteRecipe'
 import { loadDetails } from "@/service/detailsRecipe";
-import updateRecipeLike  from '@/service/likeRecipes'
+import  updateRecipeLike from '@/service/likeRecipes'
 import router from "@/router";
 import { useRoute } from "vue-router"
 import { ref, onUnmounted} from "vue";
@@ -53,7 +53,6 @@ import { ref, onUnmounted} from "vue";
 export default {
 
   setup() {
-    let vote = false
     let owner = ref(JSON.parse(localStorage.getItem('auth')).uid );
     let recipeId = useRoute().params.id;
     let currentRecipe = ref("");
@@ -65,18 +64,24 @@ export default {
 
    
     const btnOnLike = () => {
-      if (!vote) {
-        vote = true
+      const isAlreadyVote = currentRecipe.value.voters.filter(x => x == owner.value)
+      if (!isAlreadyVote.length) {
         let incrementLikes = Number(currentRecipe.value.likes)
       
-        updateRecipeLike(recipeId, { likes: ++incrementLikes ,  voters: '4'})
-          .then(() => console.log('Success, add new like!'))
-            .catch(e => console.log('Error', e.error))
+        updateRecipeLike(recipeId, { likes: ++incrementLikes}, owner.value) 
+          .then(() => {
+            console.log('Success, add new like!')
+            router.push({ name: 'message', query: { 'from': 'makeLike'} })
+          })
+          .catch(e => {
+            console.log('Error', e.error)
+            router.push({ name: 'message', query: { 'from': 'makeLike' , 'error' : e } }) 
+            })
          
-          // updateRecipeLike(recipeId,{ voters: owner } )
-        // router.push('/')  
+       
       } else {
-        console.log('You already making vote in this session!');
+        console.log('You already making vote in this recipe!');
+         router.push({ name: 'message', query: { 'from': 'alreadyLike'} })
       }
     
 

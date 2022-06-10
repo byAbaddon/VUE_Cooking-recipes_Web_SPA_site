@@ -77,6 +77,7 @@
 <script>
 import { reactive, computed  } from 'vue' 
 import { registrationNewUser } from '@/service/register'
+import router from "@/router"
 
 export default {
   setup() {
@@ -90,7 +91,11 @@ export default {
 
    const submit = () => {
      console.log('Submit');
-     registrationNewUser(formData) 
+     registrationNewUser(formData).then(e => {
+       if (e != 'ok') {
+         router.push({ name: 'message', query: { 'from': 'regFail', 'error': e } }) 
+       }
+     }) 
    }
     
     const isFormFilledCorrect = computed( () => { 

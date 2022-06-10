@@ -6,6 +6,7 @@
     </div>
     <div class="message">
       <h3>{{message}}</h3>
+      <h3 class="error">{{errorMessage}}</h3>
       <h5 v-show="showRedirect">Redirect...</h5>
     </div>
   </section>
@@ -22,12 +23,16 @@ export default {
     let message = ref('')
     let showRedirect = ref(false)
     let pathFrom = useRoute().query.from
-    console.log(pathFrom);
-     
+    let errorMessage =  ref(useRoute().query.error)
+  
     switch (pathFrom) {
       case 'share': message.value = 'Success add new recipe!'; break
       case 'archive': message.value = 'This recipe was deleted success!'; break
       case 'edit': message.value = 'Edit recipe was success!'; break  
+      case 'regFail': message.value = 'Fail to register!'; break  
+      case 'loginFail': message.value = 'Fail to login!'; break  
+      case 'makeLike': message.value = 'Thank you for like!'; break  
+      case 'alreadyLike': errorMessage.value = 'You already making vote in this recipe!'; break  
     }
 
     setTimeout(() => { showRedirect.value = true }, 2000);
@@ -49,7 +54,7 @@ export default {
       document.querySelector('footer').style.display = 'block' 
     })
 
-     return {message,showRedirect}
+     return {message,showRedirect, errorMessage}
   }
 }
 </script>
@@ -81,6 +86,9 @@ h1 {
 h3{
   color:aqua;
   text-align: center;
+}
+.error{
+  color:red;
 }
 
 h5{

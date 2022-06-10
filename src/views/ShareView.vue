@@ -74,13 +74,15 @@
       <option>Vegetables and legumes/beans</option>
       <option>Fruits</option>
       <option>Grain Food</option>
-      <option>Milk, cheese, eggs and alternatives</option>
+      <option>Milk or cheese, eggs and alternatives</option>
       <option>Lean meats and poultry, fish and alternatives</option>
       <option>Desserts</option>
       <option>Cocktails</option>
     </select>
-
-    <button class="btn btn-danger w-25 m-auto my-4 btn-block">Share it</button>
+    <div>
+     <button class="btn btn-danger w-25 m-auto my-4 btn-block">Share it</button>
+    </div>
+  
   </form>
 </template> 
 

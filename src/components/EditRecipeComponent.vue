@@ -74,8 +74,10 @@
       <option>Desserts</option>
       <option>Cocktails</option>
     </select>
-
+ <div>
     <button class="btn btn-danger w-25 m-auto my-4 btn-block">Edit</button>
+ </div>
+   
   </form>
 </template> 
 
