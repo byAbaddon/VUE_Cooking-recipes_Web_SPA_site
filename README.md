@@ -1,5 +1,6 @@
 # cooking-recipes web SPA
-
+### Firebase Hosting Preview channels :
+https://routingbase-21148--cocking-web-spa-3pszg149.web.app/
 video intro: https://youtu.be/EQS0DxqJHVE
 ## Using vue 3 composition and bootstrap
 ### No support phone responsibility, maybe someday ;))
